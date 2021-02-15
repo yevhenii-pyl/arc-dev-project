@@ -115,16 +115,14 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function Header(props) {
+export default function Header({value, setValue, selectedIndex, setSelectedIndex}) {
     const classes = useStyles();
     //gives access to the default theme within the component  
     const theme = useTheme();
     //screen sizes of medium and below will return true
     const matches = useMediaQuery(theme.breakpoints.down("md"))
-    const [value, setValue] = useState(0)
     const [anchor, setAnchor] = useState(null);
     const [openMenu, setOpenMenu] = useState(false);
-    const [selectedIndex, setSelectedIndex] = useState(0);
     const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
     const [openDrawer, setOpenDrawer] = useState(false)
 
@@ -195,7 +193,6 @@ export default function Header(props) {
                 className={classes.tabContainer} 
                 value={value}
                 onChange={handleChange}
-                indicatorColor="primary"
             >
                 {routes.map((route, index) => (
                     <Tab
